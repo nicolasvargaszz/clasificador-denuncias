@@ -1,4 +1,4 @@
-Classifier-Complaints
+# Classifier-Complaints
 You submit a complaint through the app, and it classifies it as either related to informatics or not.
 
 The model.py file contains the entire artificial intelligence model, which utilizes various functionalities of scikit-learn.
@@ -7,38 +7,38 @@ The provided code performs the classification of legal and informatics complaint
 Library Importation:
 The code begins by importing the necessary libraries for its execution, including pandas, seaborn, matplotlib.pyplot, numpy, spacy.lang.es, sklearn, and io.
 
-Data Loading:
+# Data Loading:
 Next, the code loads the data from two CSV files, "denuncias_inf.csv" and "denuncias_LEG.csv," using the pd.read_csv() function from the pandas library. The data is stored in two variables, datos_inf and datos_LEG, respectively.
 
-Data Manipulation:
+# Data Manipulation:
 Several manipulations are performed on the loaded data to prepare it for model training. Additional columns such as "tipo" (type) and "category_id" are added to the legal and informatics complaint data. The concat() function from pandas is used to combine the data from both types of complaints into a single dataframe called df. Additionally, rows containing missing values in the "Denuncias" column are removed using the notna() function.
 
-Feature Creation:
+# Feature Creation:
 Next, the TF-IDF vectorizer from the sklearn library is used to convert the complaint texts into numeric feature matrices. An instance of TfidfVectorizer is created with various custom parameters such as minimum word frequency, n-gram range, and Spanish stop words. The vectorizer is applied to the "Denuncias" column of the df dataframe using the fit_transform() function. The result is stored in the variable features.
 
-Exploratory Data Analysis:
+# Exploratory Data Analysis:
 The code performs exploratory data analysis using the seaborn and matplotlib libraries. A bar plot is generated to show the count of complaints by type ("tipo") using the groupby() and plot.bar() functions of pandas.
 
-Variable Definition:
+# Variable Definition:
 Several variables are defined that will be used later in the code. These variables include category_id_df, category_to_id, id_to_category, and labels, which contain information about the complaint categories and labels.
 
-Definition of Custom Vocabularies:
+# Definition of Custom Vocabularies:
 The code defines custom vocabularies using the TF-IDF vectorizer for legal and informatics complaints. These vocabularies are used to generate specific feature matrices for each type of complaint. The feature matrices are calculated using the fit_transform() function of the TF-IDF vectorizer and stored in the variables legal_features and informatica_features, respectively.
 
-Calculation of Chi-square Value:
+# Calculation of Chi-square Value:
 The chi-square value (chi2) is calculated for legal and informatics complaints using the chi2() function from the sklearn library. The chi-square value is used to determine which terms are most correlated with each type of complaint.
 
-Function to Print Most Correlated Terms:
+# Function to Print Most Correlated Terms:
 The code defines a function called print_most_correlated_terms() that prints the most correlated terms for each type.
 
-In addition to the Python code, there is also a mobile app.
+# In addition to the Python code, there is also a mobile app.
 Overview of the Project: Documentation of the Informatics Complaints Registration Application
 
 The Informatics Complaints Registration application is a tool designed to facilitate the process of registering and classifying complaints related to informatics crimes. The application connects to an API that classifies complaints as informatics or non-informatics. The complaint data is stored in a database, and administrative users can access it through the administration interface.
 
-Project Structure
+# Project Structure
 
-The project consists of the following main components:
+## The project consists of the following main components:
 
 ActivityMain.java: This class represents the main activity of the application. It contains buttons for creating a database, logging in, submitting a complaint, and accessing additional information.
 
@@ -50,8 +50,8 @@ API: The API is a web service that receives the text of the reported incident an
 
 Modelo.py: This file contains the text classification model used by the API. It utilizes natural language processing techniques to classify the text into categories.
 
-Main Functionalities
-The Informatics Complaints Registration application offers the following main functionalities:
+# Main Functionalities
+## The Informatics Complaints Registration application offers the following main functionalities:
 
 Complainant Registration: Users can register complainant data, such as name, last name, identification document, email, and phone number.
 
