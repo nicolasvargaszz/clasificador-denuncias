@@ -1,94 +1,83 @@
-# clasificador-denuncias.
-ingresas una denuncia a la app y te la clasifica como informatica o no
+Classifier-Complaints
+You submit a complaint through the app, and it classifies it as either related to informatics or not.
 
+The model.py file contains the entire artificial intelligence model, which utilizes various functionalities of scikit-learn.
 
-En el archivo modelo.py se encuentra todo el modelo de inteligencia artificial, el cual usa varias funcionalidades de scikit-learn.
+The provided code performs the classification of legal and informatics complaints using machine learning techniques. Here is a detailed description of the code and its functionality.
+Library Importation:
+The code begins by importing the necessary libraries for its execution, including pandas, seaborn, matplotlib.pyplot, numpy, spacy.lang.es, sklearn, and io.
 
-# El código que se proporciona realiza la clasificación de denuncias legales e informáticas utilizando técnicas de aprendizaje automático. A continuación se presenta una descripción detallada del código y su funcionamiento.
- 
-### Importación de bibliotecas:
-El código comienza importando las bibliotecas necesarias para su ejecución, incluyendo pandas, seaborn, matplotlib.pyplot, numpy, spacy.lang.es, sklearn y io.
- 
-### Carga de datos:
-A continuación, el código carga los datos de dos archivos CSV, "denuncias_inf.csv" y "denuncias_LEG.csv", utilizando la función pd.read_csv() de la biblioteca pandas. Los datos se almacenan en dos variables, datos_inf y datos_LEG, respectivamente.
- 
-### Manipulación de datos:
-Se realizan varias manipulaciones en los datos cargados para prepararlos para el entrenamiento del modelo. Se agregan columnas adicionales, como "tipo" y "category_id", a los datos de denuncias legales e informáticas. Se utiliza la función concat() de pandas para combinar los datos de ambos tipos de denuncias en un único dataframe llamado df. Además, se eliminan las filas que contienen valores faltantes en la columna "Denuncias" utilizando la función notna().
- 
-### Creación de características (features):
-A continuación, se utiliza el vectorizador TF-IDF (TfidfVectorizer) de la biblioteca sklearn para convertir los textos de las denuncias en matrices de características numéricas. Se crea una instancia de TfidfVectorizer con varios parámetros personalizados, como la frecuencia mínima de palabras, el rango de n-gramas y las palabras de parada (stop words) en español. Se aplica el vectorizador a la columna "Denuncias" del dataframe df utilizando la función fit_transform(). El resultado se almacena en la variable features.
- 
-### Análisis exploratorio de datos:
-El código realiza un análisis exploratorio de los datos utilizando las bibliotecas seaborn y matplotlib. Se genera un gráfico de barras que muestra el recuento de denuncias por tipo ("tipo") utilizando la función groupby() y plot.bar() de pandas.
- 
-###Definición de variables:
-Se definen varias variables que se utilizarán más adelante en el código. Estas variables incluyen category_id_df, category_to_id, id_to_category y labels, que contienen información sobre las categorías y las etiquetas de las denuncias.
- 
-### Definición de vocabularios personalizados:
-El código define vocabularios personalizados utilizando el vectorizador TF-IDF para denuncias legales e informáticas. Estos vocabularios se utilizan para generar matrices de características específicas para cada tipo de denuncia. Las matrices de características se calculan utilizando la función fit_transform() del vectorizador TF-IDF y se almacenan en las variables legal_features e informatica_features, respectivamente.
- 
-### Cálculo del valor chi-cuadrado:
-Se calcula el valor chi-cuadrado (chi2) para las denuncias legales e informáticas utilizando la función chi2() de la biblioteca sklearn. El valor chi-cuadrado se utiliza para determinar qué términos están más correlacionados con cada tipo de denuncia.
- 
-### Función para imprimir los términos más correlacionados:
-El código define una función llamada print_most_correlated_terms() que imprime los términos más correlacionados con cada tipo.
+Data Loading:
+Next, the code loads the data from two CSV files, "denuncias_inf.csv" and "denuncias_LEG.csv," using the pd.read_csv() function from the pandas library. The data is stored in two variables, datos_inf and datos_LEG, respectively.
 
+Data Manipulation:
+Several manipulations are performed on the loaded data to prepare it for model training. Additional columns such as "tipo" (type) and "category_id" are added to the legal and informatics complaint data. The concat() function from pandas is used to combine the data from both types of complaints into a single dataframe called df. Additionally, rows containing missing values in the "Denuncias" column are removed using the notna() function.
 
-## Ademas del codigo en python, tambien hay una app movile. 
+Feature Creation:
+Next, the TF-IDF vectorizer from the sklearn library is used to convert the complaint texts into numeric feature matrices. An instance of TfidfVectorizer is created with various custom parameters such as minimum word frequency, n-gram range, and Spanish stop words. The vectorizer is applied to the "Denuncias" column of the df dataframe using the fit_transform() function. The result is stored in the variable features.
 
-Descripción general del proyecto: Documentación de la Aplicación de Registro de Denuncias Informáticas  
+Exploratory Data Analysis:
+The code performs exploratory data analysis using the seaborn and matplotlib libraries. A bar plot is generated to show the count of complaints by type ("tipo") using the groupby() and plot.bar() functions of pandas.
 
-La aplicación de Registro de Denuncias Informáticas es una herramienta diseñada para facilitar el proceso de registro y clasificación de denuncias relacionadas con delitos informáticos. La aplicación se conecta a una API que se encarga de clasificar las denuncias como informáticas o no informáticas. Los datos de las denuncias se almacenan en una base de datos y los usuarios administradores pueden acceder a ellas a través de la interfaz de administración. 
+Variable Definition:
+Several variables are defined that will be used later in the code. These variables include category_id_df, category_to_id, id_to_category, and labels, which contain information about the complaint categories and labels.
 
-Estructura del Proyecto 
+Definition of Custom Vocabularies:
+The code defines custom vocabularies using the TF-IDF vectorizer for legal and informatics complaints. These vocabularies are used to generate specific feature matrices for each type of complaint. The feature matrices are calculated using the fit_transform() function of the TF-IDF vectorizer and stored in the variables legal_features and informatica_features, respectively.
 
-El proyecto se compone de los siguientes componentes principales: 
+Calculation of Chi-square Value:
+The chi-square value (chi2) is calculated for legal and informatics complaints using the chi2() function from the sklearn library. The chi-square value is used to determine which terms are most correlated with each type of complaint.
 
-ActivityMain.java: Esta clase representa la actividad principal de la aplicación. Contiene los botones para crear una base de datos, iniciar sesión, realizar una denuncia y acceder a información adicional. 
+Function to Print Most Correlated Terms:
+The code defines a function called print_most_correlated_terms() that prints the most correlated terms for each type.
 
-NuevoActivity.java: Esta clase se encarga de registrar los datos del denunciante, como nombre, apellido, documento, correo electrónico y teléfono. 
+In addition to the Python code, there is also a mobile app.
+Overview of the Project: Documentation of the Informatics Complaints Registration Application
 
-NuevoActivity2.java: Esta clase registra los datos del denunciado, incluyendo nombre, apellido, documento, teléfono y el hecho denunciado. Además, se comunica con una API para clasificar el texto del hecho denunciado. 
+The Informatics Complaints Registration application is a tool designed to facilitate the process of registering and classifying complaints related to informatics crimes. The application connects to an API that classifies complaints as informatics or non-informatics. The complaint data is stored in a database, and administrative users can access it through the administration interface.
 
-API: La API es un servicio web que recibe el texto del hecho denunciado y lo clasifica como informático o no informático utilizando un modelo de clasificación de texto. 
+Project Structure
 
-Modelo.py: Este archivo contiene el modelo de clasificación de texto utilizado por la API. Utiliza técnicas de procesamiento de lenguaje natural para clasificar el texto en categorías. 
+The project consists of the following main components:
 
-# Funcionalidades Principales 
+ActivityMain.java: This class represents the main activity of the application. It contains buttons for creating a database, logging in, submitting a complaint, and accessing additional information.
 
-La aplicación de Registro de Denuncias Informáticas ofrece las siguientes funcionalidades principales: 
+NuevoActivity.java: This class is responsible for registering complainant data, such as name, last name, identification document, email, and phone number.
 
-Registro de Denunciantes: Los usuarios pueden registrar los datos del denunciante, como nombre, apellido, documento, correo electrónico y teléfono. 
+NuevoActivity2.java: This class registers the data of the accused, including name, last name, identification document, phone number, and the reported incident. It also communicates with an API to classify the text of the reported incident.
 
-Registro de Denunciados: Los usuarios pueden registrar los datos del denunciado, incluyendo nombre, apellido, documento, teléfono y el hecho denunciado. 
+API: The API is a web service that receives the text of the reported incident and classifies it as informatics or non-informatics using a text classification model.
 
-Clasificación de Denuncias: La aplicación se comunica con una API que clasifica el texto del hecho denunciado como informático o no informático. 
+Modelo.py: This file contains the text classification model used by the API. It utilizes natural language processing techniques to classify the text into categories.
 
-Almacenamiento en Base de Datos: Los datos de las denuncias, junto con su clasificación, se almacenan en una base de datos para su posterior consulta. 
+Main Functionalities
+The Informatics Complaints Registration application offers the following main functionalities:
 
-Acceso a Denuncias Registradas: Los usuarios administradores pueden acceder a todas las denuncias registradas a través de la interfaz de administración. 
+Complainant Registration: Users can register complainant data, such as name, last name, identification document, email, and phone number.
 
- 
+Accused Registration: Users can register accused data, including name, last name, identification document, phone number, and the reported incident.
 
-# Objetivos del proyecto: 
+Complaint Classification: The application communicates with an API that classifies the text of the reported incident as informatics or non-informatics.
 
-Facilitar el Registro de Denuncias: El proyecto busca simplificar y agilizar el proceso de registro de denuncias informáticas para que los ciudadanos puedan presentar sus casos de manera rápida y sencilla. Esto se logrará a través de una interfaz intuitiva y amigable que guíe a los usuarios en el ingreso de la información requerida. 
+Database Storage: Complaint data, along with its classification, is stored in a database for future retrieval.
 
-Clasificación Automatizada de Denuncias: El sistema implementará una funcionalidad de clasificación automática de denuncias, utilizando técnicas de procesamiento de lenguaje natural y un modelo de clasificación de texto. Esto permitirá identificar si una denuncia está relacionada con un delito informático o no, brindando una primera clasificación que ayudará a la Unidad de Delitos Informáticos a priorizar y gestionar los casos. 
+Access to Registered Complaints: Administrative users can access all registered complaints through the administration interface.
 
+Project Objectives
+Facilitate Complaint Registration: The project aims to simplify and expedite the process of registering informatics complaints, allowing citizens to submit their cases quickly and easily. This will be achieved through an intuitive and user-friendly interface that guides users in entering the required information.
 
-Componentes principales y su funcionalidad. 
+Automated Complaint Classification: The system will implement an automated complaint classification functionality using natural language processing techniques and a text classification model. This will help identify whether a complaint is related to an informatics crime or not, providing an initial classification that will assist the Informatics Crimes Unit in prioritizing and managing cases.
 
-Los componentes principales los componentes principales de esta aplicación vienen a hacer los archivos Java Primero tenemos definidos el archivo Main _activity.Java dicho archivo, el centro de Conexiones para el usuario, es decir, ahí se encontrarán todos los hipervínculos que tendrán nuestra Aplicación ¿Desde el main activity, el usuario podrá obtener más información sobre los delitos informáticos, podrá también Registrarse como administrador para poder ver todos los registros guardados en la base de datos, También podrá obtener información sobre la unidad de delitos informáticos en Paraguay. 
- Cada una de estas interconexiones que hay en la aplicación vienen a representar un nuevo archivo. Java y un nuevo archivo. XML. 
- Luego tenemos otros dos archivos primordiales en nuestra aplicación, los cuales vienen a hacer nuevos activity y nuevo activity dos. En los cuales el usuario puede encargarse de registrarse como el denunciante y la persona que será denunciada. 
+Main Components and their Functionality
 
-en el Archivo Nuevo activity dos es donde se encuentra la conexión a la API modelo.py. Es decir, el usuario realiza la denuncia y esa denuncia se envía a La APP.  
+The main components of this application are defined in Java files. Firstly, we have the Main_activity.Java file, which serves as the central hub for user interactions. From the main activity, users can access more information about informatics crimes, register as administrators to view all records saved in the database, and obtain information about the Informatics Crimes Unit in Paraguay. Each of these interactions within the application corresponds to a new Java file and a new XML file. Additionally, we have two essential files in our application: NuevoActivity and NuevoActivity2. These files handle the registration process for the complainant and the accused, respectively.
 
-Tecnologías Utilizadas 
+In the NuevoActivity2 file, the connection to the modelo.py API is established. This is where the user submits the complaint, and it is sent to the app.
 
-Lenguaje de programación: Java Y Python. 
+Technologies Used
 
-Framework: Android Scikit learn. 
+Programming Language: Java and Python.
 
-Librerías y herramientas adicionales utilizadas, como numpy, pandas, matplotlib, scipy, Retrofit en el caso de java para conectarse a la API. 
+Framework: Android and Scikit-learn.
+
+Additional Libraries and Tools Used: numpy, pandas, matplotlib, scipy, Retrofit (for Java) to connect to the API.
