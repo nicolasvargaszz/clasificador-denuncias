@@ -81,3 +81,8 @@ Programming Language: Java and Python.
 Framework: Android and Scikit-learn.
 
 Additional Libraries and Tools Used: numpy, pandas, matplotlib, scipy, Retrofit (for Java) to connect to the API.
+
+
+# image 
+
+![Landing](imgdenunciapp/landingdenunciapp.jpeg)
